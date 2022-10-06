@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>One-armed Name Bandit</title>
+    <script>
+        const names = ['Alice', 'Bob', 'Eve'];
+
+        const randomName = names[Math.floor(Math.random() * names.length)];
+
+        let spinning = true;
+
+        const makeid = (length) => {
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() *
+                    charactersLength));
+            }
+            return result;
+        }
+
+        let spin = () => {
+            if (spinning) {
+                document.getElementById('name').textContent = makeid(5);
+                setTimeout(spin, 10);
+            }
+        };
+        setTimeout(spin, 10);
+
+        setTimeout(() => {
+            document.getElementById('name').textContent = randomName;
+            spinning = false;
+        }, 1000);
+    </script>
+</head>
+<body>
+<h1 id="name"></h1>
+
+</body>
+</html>
